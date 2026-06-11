@@ -7,15 +7,6 @@ class Program
 {
     static void Main(string[] args)
     {
-       
-        string projectDir = Directory.GetCurrentDirectory();
-        
-        string rootDir = Directory.GetParent(projectDir).FullName;
-
-      
-        string consolePath = Path.Combine(rootDir, "animated-console.svg");
-        string pacmanPath = Path.Combine(rootDir, "pacman.svg");
-
         string consoleSvg = @"<svg width='600' height='200' xmlns='http://www.w3.org/2000/svg'>
             <style>
                 .text { font-family: 'Courier New', monospace; font-size: 16px; fill: #00FF00; }
@@ -28,13 +19,6 @@ class Program
             <text x='20' y='100' class='text'>Deploying EF Core migrations... [SUCCESS]</text>
             <text x='20' y='130' class='text'>System Ready<tspan class='cursor'>_</tspan></text>
         </svg>";
-
-        File.WriteAllText(consolePath, consoleSvg, Encoding.UTF8);
-
-        DateTime now = DateTime.UtcNow;
-        string dayOfWeek = now.ToString("dddd", CultureInfo.InvariantCulture).ToUpper();
-        string day = now.ToString("dd", CultureInfo.InvariantCulture);
-        string month = now.ToString("MMMM", CultureInfo.InvariantCulture).ToUpper();
 
         string pacmanSvg = $@"<svg width='800' height='200' xmlns='http://www.w3.org/2000/svg'>
             <style>
@@ -52,15 +36,17 @@ class Program
             </style>
             <rect width='100%' height='100%' fill='#0D1117' rx='10' />
             <text x='20' y='30' fill='#8B949E' font-family='Arial' font-size='14'>Alexander's Daily Date Eater</text>
-            <text x='200' y='105' class='date-text item1' text-anchor='middle'>{dayOfWeek}</text>
-            <text x='400' y='105' class='date-text item2' text-anchor='middle'>{day}</text>
-            <text x='600' y='105' class='date-text item3' text-anchor='middle'>{month}</text>
+            <text x='200' y='105' class='date-text item1' text-anchor='middle'>{DateTime.UtcNow.ToString("dddd", CultureInfo.InvariantCulture).ToUpper()}</text>
+            <text x='400' y='105' class='date-text item2' text-anchor='middle'>{DateTime.UtcNow.ToString("dd", CultureInfo.InvariantCulture)}</text>
+            <text x='600' y='105' class='date-text item3' text-anchor='middle'>{DateTime.UtcNow.ToString("MMMM", CultureInfo.InvariantCulture).ToUpper()}</text>
             <g class='pacman-group' transform='translate(0, 100)'>
                 <circle cx='0' cy='0' r='20' fill='#E3B341' />
                 <polygon points='0,0 25,-20 25,20' fill='#0D1117' class='mouth' />
             </g>
         </svg>";
 
-        File.WriteAllText(pacmanPath, pacmanSvg, Encoding.UTF8);
+        string projectDir = Directory.GetCurrentDirectory();
+        File.WriteAllText(Path.Combine(projectDir, "animated-console.svg"), consoleSvg, Encoding.UTF8);
+        File.WriteAllText(Path.Combine(projectDir, "pacman.svg"), pacmanSvg, Encoding.UTF8);
     }
 }

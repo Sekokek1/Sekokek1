@@ -2,8 +2,8 @@ name: Generate Profile SVG
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Запуск каждый день в полночь
-  workflow_dispatch: # Позволяет запускать вручную кнопкой
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   build-and-commit:
@@ -25,7 +25,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          # Копируем файлы из папки проекта в корень репозитория перед коммитом
+          # Копируем созданные файлы из папки проекта в корень репозитория
           cp ./ProfileAnimator/animated-console.svg .
           cp ./ProfileAnimator/pacman.svg .
           git add animated-console.svg pacman.svg

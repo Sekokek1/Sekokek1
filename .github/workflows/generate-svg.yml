@@ -1,0 +1,30 @@
+name: Generate Profile SVG
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Запуск каждый день в полночь
+  workflow_dispatch: # Позволяет запускать вручную кнопкой
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x' 
+
+      - name: Run C# Generator
+        run: dotnet run --project ./ProfileAnimator/ProfileAnimator.csproj
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add *.svg
+          git commit -m "Автоматическое обновление SVG анимаций" || echo "Нет изменений для коммита"
+          git push

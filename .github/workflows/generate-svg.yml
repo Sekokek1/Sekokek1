@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-commit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Repository
@@ -25,7 +27,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          # Копируем созданные файлы из папки проекта в корень репозитория
           cp ./ProfileAnimator/animated-console.svg .
           cp ./ProfileAnimator/pacman.svg .
           git add animated-console.svg pacman.svg

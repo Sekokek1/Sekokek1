@@ -41,9 +41,11 @@ class Program
             <text x='400' y='112' class='date-text item2' text-anchor='middle'>{DateTime.UtcNow.ToString("dd", CultureInfo.InvariantCulture)}</text>
             <text x='600' y='112' class='date-text item3' text-anchor='middle'>{DateTime.UtcNow.ToString("MMMM", CultureInfo.InvariantCulture).ToUpper()}</text>
             
-            <g class='pacman-group' transform='translate(0, 105)'>
-                <circle cx='0' cy='0' r='20' fill='#E3B341' />
-                <polygon points='0,0 25,-20 25,20' fill='#0D1117' class='mouth' />
+            <g transform='translate(0, 105)'>
+                <g class='pacman-group'>
+                    <circle cx='0' cy='0' r='20' fill='#E3B341' />
+                    <polygon points='0,0 25,-20 25,20' fill='#0D1117' class='mouth' />
+                </g>
             </g>
         </svg>";
 

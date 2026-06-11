@@ -7,9 +7,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        // =================================================================
-        // 1. ГЕНЕРАЦИЯ АНИМИРОВАННОЙ КОНСОЛИ
-        // =================================================================
+
         string consoleSvg = @"<svg width='600' height='200' xmlns='http://www.w3.org/2000/svg'>
             <style>
                 .text { font-family: 'Courier New', monospace; font-size: 16px; fill: #00FF00; }
@@ -25,17 +23,15 @@ class Program
 
         File.WriteAllText("animated-console.svg", consoleSvg, Encoding.UTF8);
 
-        // =================================================================
-        // 2. РАСЧЕТ ДАТЫ И ГЕНЕРАЦИЯ ПАКМАНА
-        // =================================================================
+       
         DateTime now = DateTime.UtcNow; 
         
-        // Получаем день недели, число и месяц на английском в верхнем регистре
+       
         string dayOfWeek = now.ToString("dddd", CultureInfo.InvariantCulture).ToUpper();
         string day = now.ToString("dd", CultureInfo.InvariantCulture);
         string month = now.ToString("MMMM", CultureInfo.InvariantCulture).ToUpper();
 
-        // SVG Пакмана: исправлено выравнивание и тайминг поедания
+       
         string pacmanSvg = $@"<svg width='800' height='200' xmlns='http://www.w3.org/2000/svg'>
             <style>
                 /* Анимация движения: Пакман пролетает за 6 секунд */

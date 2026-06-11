@@ -28,8 +28,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          cp ./ProfileAnimator/animated-console.svg .
-          cp ./ProfileAnimator/pacman.svg .
           git add animated-console.svg pacman.svg
           git commit -m "Автоматическое обновление SVG анимаций" || echo "Нет изменений для коммита"
           git push
